@@ -5,6 +5,9 @@ using Microsoft.Extensions.Hosting;
 
 namespace AspNetCoreBestPractices
 {
+    using Database;
+    using Microsoft.EntityFrameworkCore;
+
     public class Startup
     {
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -12,6 +15,8 @@ namespace AspNetCoreBestPractices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<StarshipsContext>(builder =>
+                builder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Starships"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
